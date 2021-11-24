@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from django.views import generic
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 
 from .models import Post, User
 from .serializers import PostSerializer
@@ -48,6 +48,12 @@ class PostList(generic.ListView):
 class PostDetailView(generic.DetailView):
     model = Post
     template_name = 'post_detail.html'
+
+
+class CreatePostView(CreateView):
+    model = Post
+    template_name = 'new_post.html'
+    fields = '__all__'
 
 
 # class HomeView(ListView):
