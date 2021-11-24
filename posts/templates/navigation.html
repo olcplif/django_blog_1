@@ -1,0 +1,41 @@
+{% block navigation %}
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="mainNav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">🌐 Oleksandr's Daily Blog 🌐</a>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <div class="font-weight-bold">Hi, {% if user.first_name %} {{ user.first_name }} {% else %}
+                            {{ user.username }} !{% endif %}
+                        </div>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/admin/">Account</a>
+                        <a class="dropdown-item" href="/accounts/password_reset/">Reset pass</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item text-black">
+                    <a class="nav-link text-black font-weight-bold" href="{% url 'login' %}">Log In</a>
+                </li>
+                {% endif %}
+                <li class="nav-item text-black">
+                    <a class="nav-link text-black font-weight-bold" href="#">Reports</a>
+                </li>
+                <li class="nav-item text-black">
+                    <a class="nav-link text-black font-weight-bold" href="#">Policy</a>
+                </li>
+                <li class="nav-item text-black">
+                    <a class="nav-link text-black font-weight-bold" href="/contact/">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock navigation %}
